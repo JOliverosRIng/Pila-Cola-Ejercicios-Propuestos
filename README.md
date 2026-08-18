@@ -15,13 +15,13 @@ Abre `index.html` con doble clic, o desde un editor con "Live Server".
 
 ```
 .
-├── index.html          Estructura y pestañas (compartido)
+├── index.html          Estructura y pestañas
 ├── css/
-│   └── estilos.css     Estilos (compartido)
+│   └── estilos.css     Estilos
 └── js/
-    ├── pila.js         Clase Pila, algoritmo de equilibrado e interfaz  → Persona A
-    ├── cola.js         Clase Cola, operaciones y reparto SPT e interfaz → Persona B
-    └── app.js          Pestañas y arranque (compartido)
+    ├── pila.js         Clase Pila, algoritmo de equilibrado e interfaz
+    ├── cola.js         Clase Cola, operaciones y reparto SPT e interfaz
+    └── app.js          Pestañas y arranque
 ```
 
 ## Notas conceptuales (para la sustentación)
