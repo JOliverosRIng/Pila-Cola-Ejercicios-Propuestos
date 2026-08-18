@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html lang="es"> <!-- Declaración del idioma -->
-<head> <!-- Configuración de fuentes, título, CSS y metadatos -->
-<meta charset="UTF-8"> <!-- Codificación e interpretación de caracteres -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Escalado de la página en dispositivos móviles -->
-<title>Visualizador de Ejercicio de Pila y Cola</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Preconexión a Google Fonts -->
-<!-- Elección de fuentes: Inter, Space Grotesk y IBM Plex Mono -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizador de TDA — Pila y Cola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/estilos.css"> <!-- Hoja de estilos CSS -->
-
-<!-- Fin de configuración -->
-
+<link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
-    <p class="sub">Estructuras de datos abstractos</p>
-    <h1>Visualizador de Ejercicios de Pila y Cola</h1>
-    <p class="sub">Desarrollo de pilas y colas</p>
+    <p class="eyebrow">Estructuras de datos · TDA</p>
+    <h1>Visualizador de TDA: Pila y Cola</h1>
+    <p class="sub">Dos ejercicios propuestos en una sola aplicación: equilibrado de símbolos con una pila, y asignación de tareas con una cola. Todo se ejecuta en el navegador.</p>
 
     <div class="tabs" role="tablist" aria-label="Módulos">
       <button class="tab" role="tab" data-mod="pila" id="tab-pila" aria-selected="true" aria-controls="panel-pila">
-        <span class="sub"></span>Tipo de Dato Abstracto Pila
+        <span class="dot"></span>TDA Pila · Equilibrado
       </button>
       <button class="tab" role="tab" data-mod="cola" id="tab-cola" aria-selected="false" aria-controls="panel-cola">
-        <span class="sub"></span>Tipo de Dato Abstracto Cola con SPT
+        <span class="dot"></span>TDA Cola · Tareas
       </button>
     </div>
   </header>
 
   <!-- ============================================================
-       PANEL PILA
+       PANEL PILA  ·  Responsable: Persona A
        ============================================================ -->
   <section class="panel pila active" id="panel-pila" role="tabpanel" aria-labelledby="tab-pila">
     <div class="card">
+      <h2>Equilibrado de símbolos</h2>
       <p class="hint">Escribe una expresión. Se apilan las aperturas <span style="font-family:var(--mono)">( [ {</span> y cada cierre se compara con la cima de la pila.</p>
 
       <div class="row">
@@ -47,8 +44,6 @@
         <button class="btn ghost" id="pila-reset">Reiniciar</button>
       </div>
 
-      <div class="card">
-      <p class="hint">Pruebas predeterminadas: <span style="font-family:var(--mono)">( [ {</span> y cada cierre se compara con la cima de la pila.</p>
       <div class="examples" id="pila-examples">
         <button class="chip">[()]{}</button>
         <button class="chip">{[()]}</button>
@@ -56,7 +51,6 @@
         <button class="chip">(]</button>
         <button class="chip">((a)</button>
         <button class="chip">a)b</button>
-      </div>
       </div>
     </div>
 
@@ -69,7 +63,7 @@
           <div class="verdict" id="pila-verdict"></div>
         </div>
         <div class="stackbox">
-          <p class="cap">Pila</p>
+          <p class="cap">Pila (cima arriba)</p>
           <div class="stack" id="pila-stack"><div class="empty">vacía</div></div>
         </div>
       </div>
@@ -77,7 +71,7 @@
   </section>
 
   <!-- ============================================================
-       PANEL COLA
+       PANEL COLA  ·  Responsable: Persona B
        ============================================================ -->
   <section class="panel cola" id="panel-cola" role="tabpanel" aria-labelledby="tab-cola">
     <div class="card">
