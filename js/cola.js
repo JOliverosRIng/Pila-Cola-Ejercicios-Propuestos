@@ -1,10 +1,51 @@
-/* ---------- TDA Cola (primero en entrar, primero en salir) ---------- */
+/* ============================================================
+   MÓDULO COLA  ·  Responsable: Persona B
+   Asignación de tareas con un TDA Cola (FIFO) y reparto SPT.
+   ============================================================ */
+
+/* ---------- TDA Cola (primero en entrar, primero en salir) ----------
+   Operaciones según la diapositiva:
+     Crear_cola, Borrar_cola, Vacía?, Llena?, Queue, Dequeue, Tamaño
+   La capacidad es opcional: sin ella, la cola es dinámica (nunca llena).
+--------------------------------------------------------------------- */
 class Cola{
-  #items = [];
-  encolar(x){ this.#items.push(x); }
-  desencolar(){ return this.#items.shift(); }
-  frente(){ return this.#items[0]; }
+  #items;
+  #capacidad;
+
+  // Crear_cola(C: cola, ok: lógico) — el constructor deja la cola lista.
+  constructor(capacidad = Infinity){
+    this.#capacidad = capacidad;
+    this.#items = [];
+  }
+
+  // Crear_cola — reinicia una cola ya existente a estado vacío.
+  crearCola(){ this.#items = []; return true; }
+
+  // Borrar_cola — vacía por completo la cola.
+  borrarCola(){ this.#items = []; return true; }
+
+  // Vacía? — ¿no hay elementos?
   estaVacia(){ return this.#items.length === 0; }
+
+  // Llena? — ¿se alcanzó la capacidad máxima?
+  estaLlena(){ return this.#items.length >= this.#capacidad; }
+
+  // Queue (encolar) — añade al final; false si está llena.
+  encolar(x){
+    if(this.estaLlena()) return false;
+    this.#items.push(x);
+    return true;
+  }
+
+  // Dequeue (desencolar) — quita y devuelve el frente.
+  desencolar(){ return this.#items.shift(); }
+
+  // Consultar el frente sin quitarlo (auxiliar).
+  frente(){ return this.#items[0]; }
+
+  // Tamaño — número de elementos.
+  tamano(){ return this.#items.length; }
+
   get elementos(){ return [...this.#items]; }
 }
 
@@ -175,13 +216,13 @@ C.tabla.addEventListener('click', e => {
 document.getElementById('cola-run').addEventListener('click', procesar);
 
 document.getElementById('cola-demo').addEventListener('click', () => {
-  while(!colaTareas.estaVacia()) colaTareas.desencolar();
+  colaTareas.borrarCola();
   [['A',5],['B',2],['C',8],['D',1]].forEach(([id,d]) => colaTareas.encolar({id,duracion:d}));
   mostrarCola();
   C.res.style.display = 'none';
 });
 document.getElementById('cola-clear').addEventListener('click', () => {
-  while(!colaTareas.estaVacia()) colaTareas.desencolar();
+  colaTareas.borrarCola();
   mostrarCola();
   C.res.style.display = 'none';
 });

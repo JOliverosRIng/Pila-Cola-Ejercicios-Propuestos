@@ -6,7 +6,7 @@
 <title>Visualizador de Ejercicio de Pila y Cola</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Preconexión a Google Fonts -->
 <!-- Elección de fuentes: Inter, Space Grotesk y IBM Plex Mono -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilos.css"> <!-- Hoja de estilos CSS -->
 
 <!-- Fin de configuración -->
@@ -86,7 +86,7 @@
   <section class="panel cola" id="panel-cola" role="tabpanel" aria-labelledby="tab-cola">
     <div class="card">
       <h2>Asignación de tareas</h2>
-      <p class="hint">Da de alta tareas con su duración. Al procesar, se reparten entre <i>m</i> procesadores minimizando el tiempo medio de finalización (regla SPT: la más corta primero).</p>
+      <p class="hint">Da de alta tareas con su duración. Al procesar, se reparten entre <i>m</i> procesadores minimizando el tiempo medio de finalización mediante SPT.</p>
 
       <div class="row">
         <div>
@@ -97,11 +97,11 @@
           <label class="fld" for="cola-dur">Duración</label>
           <input type="number" id="cola-dur" placeholder="5" min="1" step="1">
         </div>
-        <button class="btn primary" id="cola-add">Dar de alta</button>
+        <button class="btn primary" id="cola-add">Insertar</button>
       </div>
 
       <div class="examples">
-        <button class="chip" id="cola-demo">Cargar ejemplo A5 B2 C8 D1</button>
+        <button class="chip" id="cola-demo">Cargar ejemplo</button>
         <button class="chip" id="cola-clear">Vaciar cola</button>
       </div>
     </div>
@@ -132,12 +132,12 @@
         </div>
 
         <div class="stats" id="cola-stats"></div>
-        <p class="note"><b>Nota conceptual.</b> Con un lote fijo de tareas conocidas, SPT no produce inanición: todas se ejecutan. FIFO (orden de llegada) sería más simple pero daría un tiempo medio mayor.</p>
+        <p class="note"><b>Nota conceptual.</b> se eligió SPT porque el problema busca minimizar el tiempo medio de finalización, y bajo las condiciones del ejercicio SPT logra ese objetivo mejor que FIFO. FIFO sería apropiado si la prioridad principal fuera respetar estrictamente el orden de llegada, no minimizar el tiempo promedio.</p>
       </div>
     </div>
   </section>
 
-  <footer>Visualizador de TDA · Pila y Cola implementadas como TDA en JavaScript puro</footer>
+  <footer>Autores: Janeth Oliveros Ramírez & Hemerson Julian Ballen Triana </footer>
 </div>
 
 <!-- Lógica: cada módulo en su archivo; app.js conecta las pestañas -->

@@ -102,10 +102,10 @@ function dibujarCinta(cadena, curIdx, doneUpTo, badIdx){
 function mostrarVeredicto(res){
   P.verdict.className = 'verdict show ' + (res.equilibrado ? 'ok' : 'err');
   if(res.equilibrado){
-    P.verdict.innerHTML = '✓ Expresión <b>equilibrada</b>. La pila quedó vacía al terminar.';
+    P.verdict.innerHTML = ' Expresión equilibrada. La pila quedó vacía al terminar.';
   }else{
     const pos = res.error.i < res.cadena.length ? `posición ${res.error.i}` : 'final de la cadena';
-    P.verdict.innerHTML = `✗ <b>Error</b> — ${res.error.mensaje} (${pos}).`;
+    P.verdict.innerHTML = `<b>Error</b> — ${res.error.mensaje} (${pos}).`;
   }
 }
 
@@ -118,7 +118,7 @@ function analizarInstantaneo(){
   const ult = res.pasos[res.pasos.length-1];
   dibujarPila(res.error && res.error.tipo==='apertura-sin-cerrar' && ult ? ult.pila
               : (badIdx>=0 && ult ? ult.pila : []));
-  P.log.textContent = `${res.pasos.length} carácter(es) procesado(s)`;
+  P.log.textContent = `${res.pasos.length} carácteres procesados`;
   mostrarVeredicto(res);
 }
 
