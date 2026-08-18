@@ -35,7 +35,7 @@
        ============================================================ -->
   <section class="panel pila active" id="panel-pila" role="tabpanel" aria-labelledby="tab-pila">
     <div class="card">
-      <p class="hint">Escribe una expresión. Se apilan las aperturas <span style="font-family:var(--mono)">( [ {</span> y cada cierre se compara con la cima de la pila.</p>
+      <p class="hint">Escribe una expresión. Se apilan las aperturas <span style="font-family:var(--mono)">( [ { ¿ ¡ \</span> y cada cierre <span style="font-family:var(--mono)">) ] } ? ! /</span> se compara con la cima de la pila. Las comillas <span style="font-family:var(--mono)">" '</span> alternan: la primera abre, la que coincide con la cima cierra.</p>
 
       <div class="row">
         <div class="grow">
@@ -48,11 +48,15 @@
       </div>
 
       <div class="card">
-      <p class="hint">Pruebas predeterminadas: <span style="font-family:var(--mono)">( [ {</span> y cada cierre se compara con la cima de la pila.</p>
+      <p class="hint">Pruebas predeterminadas:</p>
       <div class="examples" id="pila-examples">
         <button class="chip">[()]{}</button>
         <button class="chip">{[()]}</button>
         <button class="chip">(a[b]c)</button>
+        <button class="chip">¿Cómo estás?</button>
+        <button class="chip">¡Vamos!</button>
+        <button class="chip">"Él dijo 'hola'"</button>
+        <button class="chip">(a\b/c)</button>
         <button class="chip">(]</button>
         <button class="chip">((a)</button>
         <button class="chip">a)b</button>
