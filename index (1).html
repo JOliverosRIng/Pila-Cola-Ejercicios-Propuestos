@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizador de TDA — Pila y Cola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Estructuras de datos · TDA</p>
+    <h1>Visualizador de TDA: Pila y Cola</h1>
+    <p class="sub">Dos ejercicios propuestos en una sola aplicación: equilibrado de símbolos con una pila, y asignación de tareas con una cola. Todo se ejecuta en el navegador.</p>
+
+    <div class="tabs" role="tablist" aria-label="Módulos">
+      <button class="tab" role="tab" data-mod="pila" id="tab-pila" aria-selected="true" aria-controls="panel-pila">
+        <span class="dot"></span>TDA Pila · Equilibrado
+      </button>
+      <button class="tab" role="tab" data-mod="cola" id="tab-cola" aria-selected="false" aria-controls="panel-cola">
+        <span class="dot"></span>TDA Cola · Tareas
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       PANEL PILA  ·  Responsable: Persona A
+       ============================================================ -->
+  <section class="panel pila active" id="panel-pila" role="tabpanel" aria-labelledby="tab-pila">
+    <div class="card">
+      <h2>Equilibrado de símbolos</h2>
+      <p class="hint">Escribe una expresión. Se apilan las aperturas <span style="font-family:var(--mono)">( [ {</span> y cada cierre se compara con la cima de la pila.</p>
+
+      <div class="row">
+        <div class="grow">
+          <label class="fld" for="pila-input">Expresión</label>
+          <input type="text" id="pila-input" value="[()]{[]}" spellcheck="false" autocomplete="off">
+        </div>
+        <button class="btn primary" id="pila-check">Analizar</button>
+        <button class="btn ghost" id="pila-step">Paso a paso</button>
+        <button class="btn ghost" id="pila-reset">Reiniciar</button>
+      </div>
+
+      <div class="examples" id="pila-examples">
+        <button class="chip">[()]{}</button>
+        <button class="chip">{[()]}</button>
+        <button class="chip">(a[b]c)</button>
+        <button class="chip">(]</button>
+        <button class="chip">((a)</button>
+        <button class="chip">a)b</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage">
+        <div>
+          <label class="fld">Lectura de caracteres</label>
+          <div class="tape" id="pila-tape"></div>
+          <div class="log" id="pila-log"></div>
+          <div class="verdict" id="pila-verdict"></div>
+        </div>
+        <div class="stackbox">
+          <p class="cap">Pila (cima arriba)</p>
+          <div class="stack" id="pila-stack"><div class="empty">vacía</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PANEL COLA  ·  Responsable: Persona B
+       ============================================================ -->
+  <section class="panel cola" id="panel-cola" role="tabpanel" aria-labelledby="tab-cola">
+    <div class="card">
+      <h2>Asignación de tareas</h2>
+      <p class="hint">Da de alta tareas con su duración. Al procesar, se reparten entre <i>m</i> procesadores minimizando el tiempo medio de finalización (regla SPT: la más corta primero).</p>
+
+      <div class="row">
+        <div>
+          <label class="fld" for="cola-id">Identificador</label>
+          <input type="text" id="cola-id" placeholder="A" maxlength="6" style="width:120px" autocomplete="off">
+        </div>
+        <div>
+          <label class="fld" for="cola-dur">Duración</label>
+          <input type="number" id="cola-dur" placeholder="5" min="1" step="1">
+        </div>
+        <button class="btn primary" id="cola-add">Dar de alta</button>
+      </div>
+
+      <div class="examples">
+        <button class="chip" id="cola-demo">Cargar ejemplo A5 B2 C8 D1</button>
+        <button class="chip" id="cola-clear">Vaciar cola</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Cola de tareas</h2>
+      <p class="hint">Orden de llegada, del frente al final.</p>
+      <div id="cola-tabla"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="align-items:flex-end">
+        <div>
+          <label class="fld" for="cola-proc">Número de procesadores (m)</label>
+          <input type="number" id="cola-proc" value="1" min="1" step="1">
+        </div>
+        <button class="btn primary" id="cola-run">Procesar</button>
+      </div>
+
+      <div id="cola-resultado" style="margin-top:20px;display:none">
+        <label class="fld">Línea de tiempo por procesador</label>
+        <div class="gantt" id="cola-gantt"></div>
+        <div class="axis"><div></div><div class="ticks" id="cola-ticks"></div></div>
+
+        <div style="margin-top:18px">
+          <label class="fld">Tiempos de finalización (orden de ejecución)</label>
+          <table id="cola-fin"></table>
+        </div>
+
+        <div class="stats" id="cola-stats"></div>
+        <p class="note"><b>Nota conceptual.</b> Con un lote fijo de tareas conocidas, SPT no produce inanición: todas se ejecutan. FIFO (orden de llegada) sería más simple pero daría un tiempo medio mayor.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Visualizador de TDA · Pila y Cola implementadas como TDA en JavaScript puro</footer>
+</div>
+
+<!-- Lógica: cada módulo en su archivo; app.js conecta las pestañas -->
+<script src="js/pila.js"></script>
+<script src="js/cola.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
