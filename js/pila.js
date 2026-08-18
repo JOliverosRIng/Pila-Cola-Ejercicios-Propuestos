@@ -9,9 +9,10 @@ class Pila{
 }
 
 /* ---------- Algoritmo de equilibrado ---------- */
-const PAREJAS  = { ')':'(', ']':'[', '}':'{' };   // cierre -> apertura correspondiente
-const APERTURAS = new Set(['(','[','{']);
-const CIERRES   = new Set([')',']','}']);
+const PAREJAS  = { ')':'(', ']':'[', '}':'{', '?':'¿', '!':'¡', '/':'\\' };   // cierre -> apertura correspondiente
+const APERTURAS = new Set(['(','[','{','¿','¡','\\']);
+const CIERRES   = new Set([')',']','}','?','!','/']);
+const SIMETRICOS = new Set(['"', "'"]);   // mismo carácter abre y cierra: alterna según la cima de la pila
 
 // Analiza la cadena y devuelve un objeto de resultado.
 // Registra cada paso para poder reproducirlo visualmente.
@@ -22,7 +23,15 @@ function analizarEquilibrado(cadena){
 
   for(let i=0; i<cadena.length && !error; i++){
     const c = cadena[i];
-    if(APERTURAS.has(c)){
+    if(SIMETRICOS.has(c)){
+      if(!pila.estaVacia() && pila.peek() === c){
+        pila.pop();
+        pasos.push({i, char:c, accion:'extraer', pila:pila.elementos});
+      }else{
+        pila.push(c);
+        pasos.push({i, char:c, accion:'apilar', pila:pila.elementos});
+      }
+    }else if(APERTURAS.has(c)){
       pila.push(c);
       pasos.push({i, char:c, accion:'apilar', pila:pila.elementos});
     }else if(CIERRES.has(c)){
@@ -133,7 +142,7 @@ function reproducirPasos(){
     const etiqueta = {apilar:'apilar (push)',extraer:'extraer (pop)',ignorar:'ignorar',error:'ERROR'}[p.accion];
     P.log.textContent = `[${p.i}] «${p.char}» → ${etiqueta}`;
     k++;
-    P.stepTimer = setTimeout(paso, 620);
+    P.stepTimer = setTimeout(paso, 1100);
   };
   paso();
 }
