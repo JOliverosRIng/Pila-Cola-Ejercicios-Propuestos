@@ -1,8 +1,3 @@
-/* ============================================================
-   MÓDULO COLA  ·  Responsable: Persona B
-   Asignación de tareas con un TDA Cola (FIFO) y reparto SPT.
-   ============================================================ */
-
 /* ---------- TDA Cola (primero en entrar, primero en salir) ---------- */
 class Cola{
   #items = [];

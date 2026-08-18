@@ -1,8 +1,3 @@
-/* ============================================================
-   APP  ·  Compartido (acordado por ambas personas)
-   Control de las pestañas y arranque de la aplicación.
-   Se carga después de pila.js y cola.js.
-   ============================================================ */
 
 /* ---------- Pestañas ---------- */
 document.querySelectorAll('.tab').forEach(tab => {

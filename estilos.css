@@ -1,9 +1,4 @@
-/* ============================================================
-     DISEÑO — tema "instrumento de laboratorio"
-     Acento violeta derivado de las diapositivas (encabezados TDA).
-     Datos en monoespaciada; interfaz en sans.
-     ============================================================ */
-  :root{
+ :root{
     --bg:#eef0f4;
     --surface:#ffffff;
     --ink:#171a22;

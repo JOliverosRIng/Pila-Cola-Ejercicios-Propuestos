@@ -1,8 +1,3 @@
-/* ============================================================
-   MÓDULO PILA  ·  Responsable: Persona A
-   Equilibrado de símbolos con un TDA Pila (LIFO).
-   ============================================================ */
-
 /* ---------- TDA Pila (último en entrar, primero en salir) ---------- */
 class Pila{
   #items = [];
