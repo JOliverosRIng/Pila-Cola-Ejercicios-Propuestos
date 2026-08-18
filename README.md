@@ -24,24 +24,6 @@ Abre `index.html` con doble clic, o desde un editor con "Live Server".
     └── app.js          Pestañas y arranque (compartido)
 ```
 
-## Reparto del trabajo
-
-| Archivo            | Responsable |
-|--------------------|-------------|
-| `js/pila.js`       | Persona A   |
-| `js/cola.js`       | Persona B   |
-| `index.html`, `css/estilos.css`, `js/app.js` | Acordado entre ambas |
-
-Cada persona trabaja su archivo, por lo que las ramas casi nunca generan conflictos.
-
-## Flujo en GitHub
-
-1. `git clone <url-del-repo>` y `cd` al proyecto.
-2. Crear rama de trabajo: `git checkout -b pila` (o `cola`).
-3. Editar, y guardar avances: `git add .` y `git commit -m "mensaje claro"`.
-4. Subir: `git push -u origin pila`.
-5. Abrir un Pull Request; la otra persona lo revisa antes de fusionar a `main`.
-
 ## Notas conceptuales (para la sustentación)
 
 - Las clases `Pila` y `Cola` usan campos privados (`#items`); por fuera solo se ven las operaciones del TDA, nunca el arreglo interno.
